@@ -1,4 +1,7 @@
-export async function earthquakeAlertJob({
+import { processEarthquakes } from "@/lib/earthquakeProcessor";
+ import { generateAlertsServer } from "@/lib/alertEngineServer";
+
+export async function generateEarthquakeAlerts({
   userId,
   latitude,
   longitude,
