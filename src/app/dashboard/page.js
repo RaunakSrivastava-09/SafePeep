@@ -397,7 +397,10 @@ return (
     md:translate-x-0
   `}
 >
-  <Sidebar setSidebarOpen={setSidebarOpen} />
+ <Sidebar
+  sidebarOpen={sidebarOpen}
+  setSidebarOpen={setSidebarOpen}
+/>
 </div>
   {sidebarOpen && (
       <div
