@@ -1,0 +1,152 @@
+
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+export default function SignupPage() {
+  const router = useRouter();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        router.push("/login");
+      } else {
+        alert(data.message || "Signup failed");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+return (
+  <div className="flex min-h-screen items-center justify-center bg-background text-foreground transition-colors">
+
+    <div className="w-full max-w-md rounded-2xl bg-card border border-border p-8 shadow-xl transition hover:shadow-2xl">
+
+      <h1 className="mb-6 text-center text-3xl font-bold">
+        Create Account 
+      </h1>
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+
+        {/* NAME */}
+        <div className="relative">
+
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full rounded-lg border border-border bg-background text-foreground px-3 pt-5 pb-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-500"
+          />
+
+          <label className="absolute left-3 top-2 text-sm text-muted-foreground">
+            Full Name
+          </label>
+
+        </div>
+
+        {/* EMAIL */}
+        <div className="relative">
+
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="w-full rounded-lg border border-border bg-background text-foreground px-3 pt-5 pb-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-500"
+          />
+
+          <label className="absolute left-3 top-2 text-sm text-muted-foreground">
+            Email
+          </label>
+
+        </div>
+
+       
+        <div className="relative">
+
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            className="w-full rounded-lg border border-border bg-background text-foreground px-3 pt-5 pb-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-500"
+          />
+
+          <label className="absolute left-3 top-2 text-sm text-muted-foreground">
+            Password
+          </label>
+
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-3 cursor-pointer text-xs text-blue-600 dark:text-blue-400"
+          >
+            {showPassword ? "Hide" : "Show"}
+          </span>
+
+        </div>
+
+       
+        <button
+          type="submit"
+          disabled={loading}
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 p-3 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-60"
+        >
+          {loading && (
+            <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+          )}
+          {loading ? "Creating..." : "Sign Up"}
+        </button>
+
+      </form>
+
+      <p className="mt-5 text-center text-sm text-muted-foreground">
+        Already have an account?{" "}
+        <span
+          onClick={() => router.push("/login")}
+          className="cursor-pointer font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+        >
+          Login
+        </span>
+      </p>
+
+    </div>
+
+  </div>
+);
+}
