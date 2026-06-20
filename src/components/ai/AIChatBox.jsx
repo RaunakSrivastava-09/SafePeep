@@ -111,13 +111,13 @@ async function askAI() {
 
 
 return (
-  <div className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-md transition-colors">
+  <div className="mt-6 sm:mt-8 rounded-2xl border border-border bg-card p-4 sm:p-6 shadow-md transition-colors">
 
-    <h2 className="mb-2 text-2xl font-bold text-foreground">
+    <h2 className="mb-2 text-xl sm:text-2xl font-bold text-foreground">
       🤖 AI Safety Assistant
     </h2>
 
-    <p className="mb-5 text-sm text-muted-foreground">
+    <p className="mb-4 sm:mb-5 text-xs sm:text-sm text-muted-foreground">
       Ask about safety, weather, AQI, or travel risk.
     </p>
 
@@ -141,25 +141,25 @@ return (
       value={question}
       onChange={(e) => setQuestion(e.target.value)}
       placeholder="Example: Is it safe to travel today?"
-      className="w-full rounded-xl border border-border bg-background text-foreground p-3 outline-none transition focus:border-green-400 focus:ring-2 focus:ring-green-200 dark:focus:ring-green-500"
+      className="w-full rounded-xl border border-border bg-background text-foreground p-3 text-sm sm:text-base outline-none transition focus:border-green-400 focus:ring-2 focus:ring-green-200 dark:focus:ring-green-500"
     />
 
     <button
       onClick={askAI}
       disabled={loading}
-      className="mt-4 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-3 font-semibold text-white shadow-md transition hover:from-green-700 hover:to-emerald-700 hover:shadow-lg disabled:opacity-50"
+      className="mt-4 w-full sm:w-auto rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 px-5 sm:px-6 py-3 text-sm sm:text-base font-semibold text-white shadow-md transition hover:from-green-700 hover:to-emerald-700 hover:shadow-lg disabled:opacity-50"
     >
       {loading ? "Thinking..." : "Ask AI"}
     </button>
 
     {answer && (
-      <div className="mt-6 rounded-2xl border border-border bg-background p-5 shadow-sm transition-colors">
+      <div className="mt-5 sm:mt-6 rounded-2xl border border-border bg-background p-4 sm:p-5 shadow-sm transition-colors">
 
-        <h3 className="mb-2 font-semibold text-foreground">
+        <h3 className="mb-2 font-semibold text-foreground text-sm sm:text-base">
           🧠 SafePeep AI
         </h3>
 
-        <p className="whitespace-pre-wrap text-muted-foreground">
+        <p className="whitespace-pre-wrap text-xs sm:text-sm text-muted-foreground">
           {answer}
         </p>
 

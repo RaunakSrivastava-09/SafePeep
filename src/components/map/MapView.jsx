@@ -73,7 +73,6 @@ return (
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-     
       <Circle
         center={[latitude, longitude]}
         radius={700}
@@ -84,158 +83,32 @@ return (
         }}
       />
 
-     
-      {layers.fireLayers
-        ?.filter((f) => isValidCoord(f.lat, f.lon))
-        .map((fire) => (
-          <React.Fragment key={`fire-${fire.id}`}>
-            <Circle
-              center={[fire.lat, fire.lon]}
-              radius={fire.radius || 1000}
-              pathOptions={{
-                color: fire.color || "red",
-                fillColor: fire.color || "red",
-                fillOpacity: 0.3,
-              }}
-            />
+      {layers.fireLayers?.filter((f) => isValidCoord(f.lat, f.lon)).map((fire) => (
+        <React.Fragment key={`fire-${fire.id}`}>
+          <Circle
+            center={[fire.lat, fire.lon]}
+            radius={fire.radius || 1000}
+            pathOptions={{
+              color: fire.color || "red",
+              fillColor: fire.color || "red",
+              fillOpacity: 0.3,
+            }}
+          />
 
-            <Marker position={[fire.lat, fire.lon]}>
-              <Popup className="dark:bg-gray-800 dark:text-white">
-                <strong>🔥 Fire Detected</strong>
-                <br />
-                {fire.location}
-                <br />
-                Distance: {fire.distance?.toFixed(1) || "N/A"} km
-                <br />
-                Severity: {fire.severity}
-              </Popup>
-            </Marker>
-          </React.Fragment>
-        ))}
+          <Marker position={[fire.lat, fire.lon]}>
+            <Popup className="dark:bg-gray-800 dark:text-white">
+              <strong>🔥 Fire Detected</strong>
+              <br />
+              {fire.location}
+              <br />
+              Distance: {fire.distance?.toFixed(1) || "N/A"} km
+              <br />
+              Severity: {fire.severity}
+            </Popup>
+          </Marker>
+        </React.Fragment>
+      ))}
 
-  
-      {layers.earthquakeLayers
-        ?.filter((eq) => isValidCoord(eq.lat, eq.lon))
-        .map((eq) => (
-          <React.Fragment key={`earthquake-${eq.id}`}>
-            <Circle
-              center={[eq.lat, eq.lon]}
-              radius={eq.radius || 30000}
-              pathOptions={{
-                color: eq.color || "purple",
-                fillColor: eq.color || "purple",
-                fillOpacity: 0.2,
-              }}
-            />
-
-            <Marker position={[eq.lat, eq.lon]}>
-              <Popup className="dark:bg-gray-800 dark:text-white">
-                <strong>🌍 Earthquake</strong>
-                <br />
-                {eq.location}
-                <br />
-                Magnitude: {eq.magnitude}
-                <br />
-                Distance: {eq.distance?.toFixed(1) || "N/A"} km
-                <br />
-                Direction: {eq.direction}
-                <br />
-                Severity: {eq.severity}
-              </Popup>
-            </Marker>
-          </React.Fragment>
-        ))}
-
-     
-      {layers.weatherLayers
-        ?.filter((z) => isValidCoord(z.lat, z.lon))
-        .map((zone) => (
-          <React.Fragment key={`weather-${zone.id}`}>
-            <Circle
-              center={[zone.lat, zone.lon]}
-              radius={zone.radius || 5000}
-              pathOptions={{
-                color: zone.color,
-                fillColor: zone.color,
-                fillOpacity: 0.18,
-              }}
-            />
-
-            <Marker position={[zone.lat, zone.lon]}>
-              <Popup className="dark:bg-gray-800 dark:text-white">
-                <strong>🌦 Weather Hazard</strong>
-                <br />
-                {zone.message}
-                <br />
-                Severity: {zone.severity}
-              </Popup>
-            </Marker>
-          </React.Fragment>
-        ))}
-
-   
-      {layers.floodLayers
-        ?.filter((f) => isValidCoord(f.lat, f.lon))
-        .map((flood) => (
-          <React.Fragment key={`flood-${flood.id}`}>
-            <Circle
-              center={[flood.lat, flood.lon]}
-              radius={flood.radius || 8000}
-              pathOptions={{
-                color: "blue",
-                fillColor: "blue",
-                fillOpacity: 0.22,
-              }}
-            />
-
-            <Marker position={[flood.lat, flood.lon]}>
-              <Popup className="dark:bg-gray-800 dark:text-white">
-                <strong>🌊 Flood Warning</strong>
-                <br />
-                {flood.message}
-              </Popup>
-            </Marker>
-          </React.Fragment>
-        ))}
-
-    
-      {layers.tsunamiLayers
-        ?.filter((t) => isValidCoord(t.lat, t.lon))
-        .map((tsunami) => (
-          <React.Fragment key={`tsunami-${tsunami.id}`}>
-            <Circle
-              center={[tsunami.lat, tsunami.lon]}
-              radius={tsunami.radius || 20000}
-              pathOptions={{
-                color: "#00BCD4",
-                fillColor: "#00BCD4",
-                fillOpacity: 0.2,
-              }}
-            />
-
-            <Marker position={[tsunami.lat, tsunami.lon]}>
-              <Popup className="dark:bg-gray-800 dark:text-white">
-                <strong>🌊 Tsunami Warning</strong>
-                <br />
-                {tsunami.message}
-              </Popup>
-            </Marker>
-          </React.Fragment>
-        ))}
-
-      {/* ================= SAFE ROUTE ================= */}
-      {safeRouteCoords.length > 1 && (
-        <Polyline
-          positions={safeRouteCoords}
-          pathOptions={{
-            color: "green",
-            weight: 6,
-            opacity: 0.9,
-          }}
-        />
-      )}
-
-    
       {destination && (
         <>
           <Circle
@@ -270,7 +143,6 @@ return (
         </>
       )}
 
-     
       <Marker position={[latitude, longitude]}>
         <Popup className="dark:bg-gray-800 dark:text-white">
           <strong>📍 Your Location</strong>
@@ -292,79 +164,79 @@ return (
       </Marker>
     </MapContainer>
 
-   
-   <div
-        className="
-          absolute z-[1000]
+    <div
+      className="
+        absolute z-[1000]
 
-      
-          bottom-0 left-0 right-0
+        bottom-0 left-0 right-0
+        sm:bottom-auto sm:left-auto sm:right-4 sm:top-4
 
-          sm:bottom-auto sm:left-auto sm:right-4 sm:top-4
+        w-full sm:w-60
+        max-h-[45vh] sm:max-h-[60vh]
+        overflow-y-auto
 
-          w-full sm:w-60
-          max-h-[40vh] sm:max-h-[60vh]
-          overflow-y-auto
+        rounded-t-2xl sm:rounded-xl
+        bg-white/95 dark:bg-gray-900/90
 
-          rounded-t-2xl sm:rounded-xl
-          bg-white/95 dark:bg-gray-900/90
+        p-3 sm:p-4
+        shadow-2xl sm:shadow-xl
+        border dark:border-gray-700
+        backdrop-blur-sm
 
-          p-4 shadow-2xl sm:shadow-xl
-          border dark:border-gray-700
-          backdrop-blur-sm
+        text-gray-800 dark:text-white
+        text-xs sm:text-sm
 
-          text-gray-800 dark:text-white
-          text-xs sm:text-sm
-        " >
-        <h2 className="text-base font-bold mb-3">🗺️ Risk Legend</h2>
+        leading-snug
+      "
+    >
+      <h2 className="text-sm sm:text-base font-bold mb-2 sm:mb-3">
+        🗺️ Risk Legend
+      </h2>
 
-        <div className="mb-3">
-          <h3 className="font-semibold mb-2">Overall Risk</h3>
+      <div className="mb-2 sm:mb-3">
+        <h3 className="font-semibold mb-1 sm:mb-2">Overall Risk</h3>
 
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-green-500"></span>
-              Low Risk
-            </div>
+        <div className="space-y-1 sm:space-y-2">
+          <div className="flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full bg-green-500"></span>
+            Low Risk
+          </div>
 
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-orange-400"></span>
-              Medium Risk
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full bg-orange-400"></span>
+            Medium Risk
+          </div>
 
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-red-500"></span>
-              High Risk
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full bg-red-500"></span>
+            High Risk
           </div>
         </div>
+      </div>
 
-        <hr className="my-3 border-gray-300 dark:border-gray-700" />
+      <hr className="my-2 sm:my-3 border-gray-300 dark:border-gray-700" />
 
-        <div className="mb-3">
-          <h3 className="font-semibold mb-2">Hazards</h3>
-          <div className="space-y-1">
-            <div>🔥 Fire</div>
-            <div>🌍 Earthquake</div>
-            <div>🌦 Weather</div>
-            <div>🌊 Flood</div>
-            <div>🌊 Tsunami</div>
-          </div>
+      <div className="mb-2 sm:mb-3">
+        <h3 className="font-semibold mb-1 sm:mb-2">Hazards</h3>
+        <div className="space-y-1">
+          <div>🔥 Fire</div>
+          <div>🌍 Earthquake</div>
+          <div>🌦 Weather</div>
+          <div>🌊 Flood</div>
+          <div>🌊 Tsunami</div>
         </div>
+      </div>
 
-      <hr className="my-3 border-gray-300 dark:border-gray-700" />
+      <hr className="my-2 sm:my-3 border-gray-300 dark:border-gray-700" />
 
       <div>
-        <h3 className="font-semibold mb-2">
-          Navigation
-        </h3>
+        <h3 className="font-semibold mb-1 sm:mb-2">Navigation</h3>
 
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-green-600"></span>
           Safe Route
         </div>
       </div>
-
     </div>
 
   </div>

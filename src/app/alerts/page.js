@@ -76,30 +76,32 @@ export default function AlertsPage() {
 
  
 return (
-  <main className="p-8 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+  <main className="p-4 sm:p-8 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
 
-    <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+    <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white">
       Emergency Alerts 🚨
     </h1>
 
-  {alerts.length === 0 ? (
-  <div className="rounded-2xl border border-border bg-card p-6 text-center shadow-lg transition-colors">
-    <div className="mb-3 text-5xl">🛡️</div>
+    {alerts.length === 0 ? (
+      <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 text-center shadow-lg transition-colors">
 
-    <h2 className="text-xl font-bold text-green-600 dark:text-green-400">
-      All Clear
-    </h2>
+        <div className="mb-3 text-4xl sm:text-5xl">🛡️</div>
 
-    <p className="mt-2 text-muted-foreground">
-      No active alerts in your area right now.
-    </p>
+        <h2 className="text-lg sm:text-xl font-bold text-green-600 dark:text-green-400">
+          All Clear
+        </h2>
 
-    <p className="mt-1 text-sm text-muted-foreground">
-      We'll notify you immediately when any risk is detected.
-    </p>
-  </div>
-) : (
-      <div className="space-y-4">
+        <p className="mt-2 text-sm sm:text-base text-muted-foreground">
+          No active alerts in your area right now.
+        </p>
+
+        <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
+          We'll notify you immediately when any risk is detected.
+        </p>
+
+      </div>
+    ) : (
+      <div className="space-y-3 sm:space-y-4">
         {alerts.map((alert) => (
           <AlertCard
             key={alert._id}

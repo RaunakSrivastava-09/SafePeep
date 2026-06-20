@@ -15,9 +15,9 @@ export default function RiskTimeline({
 
 
 return (
-  <div className="rounded-xl border border-border bg-card p-6 shadow transition-colors">
+  <div className="rounded-xl border border-border bg-card p-4 sm:p-6 shadow transition-colors">
 
-    <h2 className="mb-4 text-2xl font-bold text-foreground">
+    <h2 className="mb-4 text-xl sm:text-2xl font-bold text-foreground">
       Risk Timeline 📈
     </h2>
 
@@ -35,7 +35,7 @@ return (
         return (
           <div
             key={day}
-            className="flex justify-between border-b border-border pb-2 transition-colors"
+            className="flex justify-between border-b border-border pb-2 text-sm sm:text-base transition-colors"
           >
 
             <span className="text-foreground/80">

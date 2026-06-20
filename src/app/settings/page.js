@@ -96,24 +96,24 @@ export default function SettingsPage() {
   }
 
 return (
-  <main className="min-h-screen bg-background text-foreground p-8 transition-colors">
+  <main className="min-h-screen bg-background text-foreground p-4 sm:p-8 transition-colors">
 
-    <h1 className="mb-8 text-3xl font-bold">
+    <h1 className="mb-6 sm:mb-8 text-2xl sm:text-3xl font-bold">
       ⚙ Settings
     </h1>
 
-    <div className="mx-auto max-w-2xl rounded-2xl bg-card border border-border shadow-lg p-8 space-y-8">
+    <div className="mx-auto max-w-2xl rounded-2xl bg-card border border-border shadow-lg p-5 sm:p-8 space-y-6 sm:space-y-8">
 
-    
-      <div className="flex items-center justify-between">
+      {/* Notifications */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
 
         <div>
 
-          <h2 className="text-lg font-semibold">
+          <h2 className="text-base sm:text-lg font-semibold">
             🔔 Enable Notifications
           </h2>
 
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Receive disaster and safety alerts.
           </p>
 
@@ -123,7 +123,7 @@ return (
           type="checkbox"
           checked={settings.notificationEnabled}
           onChange={() => handleToggle("notificationEnabled")}
-          className="h-5 w-5 accent-blue-600"
+          className="h-5 w-5 accent-blue-600 self-start sm:self-auto"
         />
 
       </div>
@@ -131,15 +131,15 @@ return (
       <hr className="border-border" />
 
       {/* Dark Mode */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
 
         <div>
 
-          <h2 className="text-lg font-semibold">
+          <h2 className="text-base sm:text-lg font-semibold">
             🌙 Dark Mode
           </h2>
 
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Switch between Light and Dark theme.
           </p>
 
@@ -149,7 +149,7 @@ return (
           type="checkbox"
           checked={settings.darkMode}
           onChange={() => handleToggle("darkMode")}
-          className="h-5 w-5 accent-gray-800"
+          className="h-5 w-5 accent-gray-800 self-start sm:self-auto"
         />
 
       </div>
@@ -157,7 +157,7 @@ return (
       <button
         onClick={saveSettings}
         disabled={saving}
-        className="w-full rounded-xl bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
+        className="w-full rounded-xl bg-blue-600 py-3 text-sm sm:text-base font-semibold text-white transition hover:bg-blue-700"
       >
         {saving ? "Saving..." : "💾 Save Settings"}
       </button>

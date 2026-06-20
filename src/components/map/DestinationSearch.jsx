@@ -85,13 +85,13 @@ export default function DestinationSearch({
 
 
 return (
-  <div className="mb-5 flex gap-3 transition-colors">
+  <div className="mb-5 flex flex-col sm:flex-row gap-3 transition-colors">
 
     <input
       type="text"
       value={query}
       placeholder="Search destination..."
-      className="flex-1 rounded-lg border border-border bg-card px-4 py-2 text-foreground outline-none transition focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400"
+      className="w-full flex-1 rounded-lg border border-border bg-card px-4 py-2 text-foreground outline-none transition focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400"
       onChange={(e) => setQuery(e.target.value)}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
@@ -103,7 +103,7 @@ return (
     <button
       onClick={searchLocation}
       disabled={loading}
-      className="rounded-lg bg-green-600 px-5 py-2 text-white transition hover:bg-green-700 disabled:opacity-60 dark:bg-green-500 dark:hover:bg-green-600"
+      className="w-full sm:w-auto rounded-lg bg-green-600 px-5 py-2 text-white transition hover:bg-green-700 disabled:opacity-60 dark:bg-green-500 dark:hover:bg-green-600"
     >
       {loading ? "Searching..." : "Find Route"}
     </button>

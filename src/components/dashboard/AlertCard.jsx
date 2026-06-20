@@ -15,20 +15,20 @@ export default function AlertCard({
 
 return (
   <div
-    className={`mb-3 rounded-lg border border-border border-l-4 bg-card p-4 shadow transition-colors ${
+    className={`mb-3 rounded-lg border border-border border-l-4 bg-card p-3 sm:p-4 shadow transition-colors ${
       isStopped ? "opacity-50" : ""
     }`}
   >
 
-    <h3 className="font-semibold text-foreground">
+    <h3 className="text-sm sm:text-base font-semibold text-foreground">
       {alert.message}
     </h3>
 
-    <p className="mt-1 text-sm text-muted-foreground">
+    <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
       Type: {alert.type}
     </p>
 
-    <p className="mt-1 text-sm text-muted-foreground">
+    <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
       Severity{" "}
 
       <span
@@ -45,16 +45,16 @@ return (
 
     </p>
 
-    <div className="mt-4">
+    <div className="mt-3 sm:mt-4">
 
       {isStopped ? (
-        <div className="text-sm font-medium text-muted-foreground">
+        <div className="text-xs sm:text-sm font-medium text-muted-foreground">
           🔕 Notifications stopped
         </div>
       ) : (
         <button
           onClick={() => onStop(alert.eventId)}
-          className="rounded-lg bg-slate-800 dark:bg-slate-700 px-4 py-2 text-white hover:bg-slate-900 dark:hover:bg-slate-600 transition"
+          className="w-full sm:w-auto rounded-lg bg-slate-800 dark:bg-slate-700 px-4 py-2 text-sm text-white hover:bg-slate-900 dark:hover:bg-slate-600 transition"
         >
           Stop Notifications
         </button>

@@ -196,41 +196,38 @@ if (!weather || !aqi) {
   );
 }
 
-
-
-
 return (
-  <main className="p-8 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+  <main className="p-4 sm:p-8 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
 
-    <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+    <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 dark:text-white">
       🤖 AI Safety Assistant
     </h1>
 
-    <p className="mt-2 mb-8 text-gray-600 dark:text-gray-300">
-      Ask anything about disasters,
-      weather, air quality or travel
-      safety.
+    <p className="mt-2 mb-6 sm:mb-8 text-sm sm:text-base text-gray-600 dark:text-gray-300">
+      Ask anything about disasters, weather, air quality or travel safety.
     </p>
 
-    <div className="mb-6">
+    <div className="mb-5 sm:mb-6">
       <DestinationSearch
         onDestinationSelect={handleDestinationSelect}
       />
     </div>
 
-    <AIChatBox
-      riskScore={riskScore}
-      temperature={weather.temperature_2m}
-      aqi={aqi.us_aqi}
-      fireAlerts={fireAlerts}
-      earthquakeAlerts={earthquakeAlerts}
-      floodAlerts={floodAlerts}
-      tsunamiAlerts={tsunamiAlerts}
-      weatherAlerts={weatherAlerts}
-      location={address}
-      destination={destination}
-      destinationRisk={destinationRiskData}
-    />
+    <div className="w-full overflow-hidden">
+      <AIChatBox
+        riskScore={riskScore}
+        temperature={weather.temperature_2m}
+        aqi={aqi.us_aqi}
+        fireAlerts={fireAlerts}
+        earthquakeAlerts={earthquakeAlerts}
+        floodAlerts={floodAlerts}
+        tsunamiAlerts={tsunamiAlerts}
+        weatherAlerts={weatherAlerts}
+        location={address}
+        destination={destination}
+        destinationRisk={destinationRiskData}
+      />
+    </div>
 
   </main>
 );

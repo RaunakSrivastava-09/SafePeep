@@ -74,18 +74,18 @@ export default function RiskHistoryChart() {
 
 
 return (
-  <div className="rounded-xl border border-border bg-card p-6 shadow transition-colors">
+  <div className="rounded-xl border border-border bg-card p-4 sm:p-6 shadow transition-colors">
 
-    <h2 className="mb-4 text-2xl font-bold text-foreground">
+    <h2 className="mb-4 text-xl sm:text-2xl font-bold text-foreground">
       Risk History 📊
     </h2>
 
     {history.length === 0 ? (
-      <p className="text-muted-foreground">
+      <p className="text-sm sm:text-base text-muted-foreground">
         No history available yet
       </p>
     ) : (
-      <div className="h-[350px] w-full">
+      <div className="h-[250px] sm:h-[350px] w-full">
 
         <ResponsiveContainer width="100%" height="100%">
 
@@ -101,12 +101,14 @@ return (
               dataKey="date"
               stroke="currentColor"
               className="text-muted-foreground"
+              tick={{ fontSize: 10 }}
             />
 
             <YAxis
               domain={[0, 10]}
               stroke="currentColor"
               className="text-muted-foreground"
+              tick={{ fontSize: 10 }}
             />
 
             <Tooltip
@@ -127,14 +129,8 @@ return (
               stroke="currentColor"
               className="text-foreground"
               strokeWidth={3}
-              dot={{
-                r: 4,
-                fill: "currentColor",
-              }}
-              activeDot={{
-                r: 6,
-                fill: "currentColor",
-              }}
+              dot={{ r: 3, fill: "currentColor" }}
+              activeDot={{ r: 5, fill: "currentColor" }}
             />
 
           </LineChart>

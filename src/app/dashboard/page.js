@@ -390,30 +390,28 @@ useEffect(() => {
 return (
   <div className="flex min-h-screen bg-background text-foreground transition-colors">
 
-   
-    <div className="sticky top-0 h-screen">
+    <div className="hidden md:block sticky top-0 h-screen">
       <Sidebar />
     </div>
 
-  
-    <div className="flex-1">
+    <div className="flex-1 w-full">
 
-    
+   
       <div className="sticky top-0 z-50 bg-card shadow border-b border-border">
         <Navbar />
       </div>
 
-      <main className="p-8">
+      <main className="p-4 sm:p-6 md:p-8">
 
-      
+       
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
           <div>
-            <h1 className="text-4xl font-bold text-foreground">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
               SafePeep Dashboard
             </h1>
 
-            <p className="mt-2 text-muted-foreground">
+            <p className="mt-2 text-sm sm:text-base text-muted-foreground">
               📍 SafePeep Risk Intelligence
             </p>
           </div>
@@ -421,96 +419,93 @@ return (
           <button
             onClick={async () => {
               const allowed = await requestNotificationPermission();
-
-              if (allowed) {
-                sendTestNotification();
-              }
+              if (allowed) sendTestNotification();
             }}
-            className="flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-blue-700 hover:shadow-md active:scale-95"
+            className="w-full md:w-auto flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm sm:text-base font-semibold text-white shadow-sm transition hover:bg-blue-700 hover:shadow-md active:scale-95"
           >
             Enable Alerts 🔔
           </button>
 
         </div>
 
-        
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+      
+        <div className="mt-6 sm:mt-8 grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-3">
           <RiskScoreCard score={riskScore} />
           <WeatherCard weather={weather} />
           <AQICard aqi={aqi} />
         </div>
 
-   
-        <div className="mt-8">
+       
+        <div className="mt-6 sm:mt-8">
           {loading ? (
-            <div className="rounded-xl bg-card border border-border p-4 text-muted-foreground shadow">
+            <div className="rounded-xl bg-card border border-border p-4 text-sm sm:text-base text-muted-foreground shadow">
               Getting location...
             </div>
           ) : error ? (
-            <div className="rounded-xl bg-red-100 dark:bg-red-900/30 p-4 text-red-600 dark:text-red-200">
+            <div className="rounded-xl bg-red-100 dark:bg-red-900/30 p-4 text-sm sm:text-base text-red-600 dark:text-red-200">
               {error}
             </div>
           ) : (
-            <LocationCard
-              latitude={latitude}
-              longitude={longitude}
-            />
+            <LocationCard latitude={latitude} longitude={longitude} />
           )}
         </div>
 
        
-        <section className="mt-10">
+        <section className="mt-8 sm:mt-10">
           <RiskTimeline forecast={forecast} />
         </section>
 
-        
-        <section className="mt-10">
+      
+        <section className="mt-8 sm:mt-10">
           <RiskHistoryChart />
         </section>
 
-       
-        <section className="mt-10">
-          <h2 className="mb-4 text-2xl font-bold text-foreground">
+        {/* ALERTS */}
+        <section className="mt-8 sm:mt-10">
+
+          <h2 className="mb-4 text-xl sm:text-2xl font-bold text-foreground">
             Active Alerts
           </h2>
 
-          <div>
-            {activeAlerts.length === 0 ? (
-              <div className="rounded-xl border border-border bg-green-50 dark:bg-green-900/20 p-8 text-center">
-                <div className="text-5xl mb-3">🛡️</div>
+          {activeAlerts.length === 0 ? (
+            <div className="rounded-xl border border-border bg-green-50 dark:bg-green-900/20 p-6 sm:p-8 text-center">
 
-                <h2 className="text-xl font-bold text-green-700 dark:text-green-400">
-                  All Clear
-                </h2>
+              <div className="text-4xl sm:text-5xl mb-3">🛡️</div>
 
-                <p className="mt-2 text-muted-foreground">
-                  No active alerts in your area.
-                </p>
+              <h2 className="text-lg sm:text-xl font-bold text-green-700 dark:text-green-400">
+                All Clear
+              </h2>
 
-                <p className="mt-2 text-sm text-muted-foreground">
-                  We'll notify you if any environmental risks are detected.
-                </p>
-              </div>
-            ) : (
-              activeAlerts.map((alert) => (
-                <AlertCard
-                  key={alert._id}
-                  alert={alert}
-                  onStop={() => stopAlert(alert)}
-                  isStopped={mutedEvents.has(alert.eventId)}
-                />
-              ))
-            )}
-          </div>
+              <p className="mt-2 text-sm text-muted-foreground">
+                No active alerts in your area.
+              </p>
+
+              <p className="mt-2 text-xs sm:text-sm text-muted-foreground">
+                We'll notify you if any environmental risks are detected.
+              </p>
+
+            </div>
+          ) : (
+            activeAlerts.map((alert) => (
+              <AlertCard
+                key={alert._id}
+                alert={alert}
+                onStop={() => stopAlert(alert)}
+                isStopped={mutedEvents.has(alert.eventId)}
+              />
+            ))
+          )}
+
         </section>
 
        
-        <section className="mt-10">
-          <h2 className="mb-4 text-2xl font-bold text-foreground">
+        <section className="mt-8 sm:mt-10">
+
+          <h2 className="mb-4 text-xl sm:text-2xl font-bold text-foreground">
             Recommendations
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {recommendations.map((item, index) => (
               <RecommendationCard
                 key={index}
@@ -518,6 +513,7 @@ return (
               />
             ))}
           </div>
+
         </section>
 
       </main>

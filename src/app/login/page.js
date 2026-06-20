@@ -51,14 +51,13 @@ export default function LoginPage() {
     }
   };
 
-
 return (
-  <div className="flex min-h-screen items-center justify-center bg-background text-foreground transition-colors">
+  <div className="flex min-h-screen items-center justify-center bg-background text-foreground transition-colors p-4">
 
-    <div className="w-full max-w-md rounded-2xl bg-card border border-border p-8 shadow-xl transition hover:shadow-2xl">
+    <div className="w-full max-w-md rounded-2xl bg-card border border-border p-6 sm:p-8 shadow-xl transition hover:shadow-2xl">
 
-      <h1 className="mb-6 text-center text-3xl font-bold">
-        Welcome Back 
+      <h1 className="mb-6 text-center text-2xl sm:text-3xl font-bold">
+        Welcome Back
       </h1>
 
       <form onSubmit={handleSubmit} className="space-y-5">
@@ -71,14 +70,14 @@ return (
             value={formData.email}
             onChange={handleChange}
             required
-            className="peer w-full rounded-lg border border-border bg-background text-foreground px-3 pt-5 pb-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-500"
+            className="peer w-full rounded-lg border border-border bg-background text-foreground px-3 pt-5 pb-2 text-sm sm:text-base outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-500"
           />
-          <label className="absolute left-3 top-2 text-sm text-muted-foreground transition-all peer-focus:text-blue-500">
+          <label className="absolute left-3 top-2 text-xs sm:text-sm text-muted-foreground transition-all peer-focus:text-blue-500">
             Email
           </label>
         </div>
 
-   
+        {/* PASSWORD */}
         <div className="relative">
           <input
             type={showPassword ? "text" : "password"}
@@ -86,9 +85,9 @@ return (
             value={formData.password}
             onChange={handleChange}
             required
-            className="peer w-full rounded-lg border border-border bg-background text-foreground px-3 pt-5 pb-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-500"
+            className="peer w-full rounded-lg border border-border bg-background text-foreground px-3 pt-5 pb-2 text-sm sm:text-base outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-500"
           />
-          <label className="absolute left-3 top-2 text-sm text-muted-foreground">
+          <label className="absolute left-3 top-2 text-xs sm:text-sm text-muted-foreground">
             Password
           </label>
 
@@ -100,11 +99,11 @@ return (
           </span>
         </div>
 
-    
+        {/* BUTTON */}
         <button
           type="submit"
           disabled={loading}
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 p-3 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-60"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 p-3 text-sm sm:text-base font-semibold text-white transition hover:bg-blue-700 disabled:opacity-60"
         >
           {loading && (
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
@@ -114,7 +113,7 @@ return (
 
       </form>
 
-      <p className="mt-5 text-center text-sm text-muted-foreground">
+      <p className="mt-5 text-center text-xs sm:text-sm text-muted-foreground">
         Don’t have an account?{" "}
         <span
           onClick={() => router.push("/signup")}
@@ -125,6 +124,7 @@ return (
       </p>
 
     </div>
+
   </div>
 );
 }

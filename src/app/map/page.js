@@ -206,33 +206,37 @@ const destinationRiskData = calculateDestinationRisk({
 
 
 return (
-  <main className="min-h-screen bg-background text-foreground p-8 transition-colors">
+  <main className="min-h-screen bg-background text-foreground p-4 sm:p-8 transition-colors">
 
-    <h1 className="mb-2 text-3xl font-bold">
+    <h1 className="mb-2 text-2xl sm:text-3xl font-bold">
       SafePeep Risk Map 🗺️
     </h1>
 
-    <p className="mb-6 text-muted-foreground">
+    <p className="mb-4 sm:mb-6 text-sm sm:text-base text-muted-foreground">
       View your current location and surrounding risk zones.
     </p>
 
-    <DestinationSearch
-      onDestinationSelect={setDestination}
-    />
+    <div className="mb-4">
+      <DestinationSearch
+        onDestinationSelect={setDestination}
+      />
+    </div>
 
-    <MapView
-      latitude={latitude}
-      longitude={longitude}
-      destination={destination}
-      destinationRisk={destinationRiskData.score}
-      destinationRiskColor={destinationRiskData.color}
-      destinationSeverity={destinationRiskData.severity}
-      riskScore={riskScore}
-      temperature={weather?.temperature_2m || 0}
-      aqi={aqi?.us_aqi || 0}
-      layers={layers}
-      address={address}
-    />
+    <div className="w-full overflow-hidden rounded-xl">
+      <MapView
+        latitude={latitude}
+        longitude={longitude}
+        destination={destination}
+        destinationRisk={destinationRiskData.score}
+        destinationRiskColor={destinationRiskData.color}
+        destinationSeverity={destinationRiskData.severity}
+        riskScore={riskScore}
+        temperature={weather?.temperature_2m || 0}
+        aqi={aqi?.us_aqi || 0}
+        layers={layers}
+        address={address}
+      />
+    </div>
 
   </main>
 );

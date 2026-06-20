@@ -48,37 +48,36 @@ Loading profile... </div>
 );
 }
 
-
 return (
-  <main className="min-h-screen bg-background text-foreground p-10 transition-colors">
+  <main className="min-h-screen bg-background text-foreground p-4 sm:p-10 transition-colors">
 
-    <h1 className="mb-8 text-3xl font-bold">
+    <h1 className="mb-6 sm:mb-8 text-2xl sm:text-3xl font-bold">
       Profile 👤
     </h1>
 
-    <div className="mx-auto max-w-2xl rounded-2xl bg-card border border-border p-10 shadow-sm">
+    <div className="mx-auto max-w-2xl rounded-2xl bg-card border border-border p-5 sm:p-10 shadow-sm">
 
-      <div className="space-y-6 text-base">
+      <div className="space-y-5 sm:space-y-6 text-sm sm:text-base">
 
-        <p className="flex justify-between">
+        <p className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
           <strong className="text-muted-foreground">
             Name:
           </strong>
-          <span className="font-medium text-foreground">
+          <span className="font-medium text-foreground break-words">
             {user.name}
           </span>
         </p>
 
-        <p className="flex justify-between">
+        <p className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
           <strong className="text-muted-foreground">
             Email:
           </strong>
-          <span className="font-medium text-foreground">
+          <span className="font-medium text-foreground break-words">
             {user.email}
           </span>
         </p>
 
-        <p className="flex justify-between">
+        <p className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
           <strong className="text-muted-foreground">
             Joined:
           </strong>
