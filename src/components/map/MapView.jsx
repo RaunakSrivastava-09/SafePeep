@@ -293,60 +293,64 @@ return (
     </MapContainer>
 
    
-    <div   className="
-    absolute z-[1000]
-    top-2 right-2 sm:top-4 sm:right-4
-    bottom-2 sm:bottom-auto
-    w-40 sm:w-60
-    max-h-[60vh] overflow-y-auto
-    rounded-xl bg-white/95 dark:bg-gray-900/90
-    p-3 sm:p-4 shadow-xl border dark:border-gray-700
-    backdrop-blur-sm text-gray-800 dark:text-white
-    text-xs sm:text-sm
-  ">
+   <div
+        className="
+          absolute z-[1000]
 
-      <h2 className="text-base font-bold mb-3">
-        🗺️ Risk Legend
-      </h2>
+      
+          bottom-0 left-0 right-0
 
-      <div className="mb-3">
-        <h3 className="font-semibold mb-2">
-          Overall Risk
-        </h3>
+          sm:bottom-auto sm:left-auto sm:right-4 sm:top-4
 
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-green-500"></span>
-            Low Risk
-          </div>
+          w-full sm:w-60
+          max-h-[40vh] sm:max-h-[60vh]
+          overflow-y-auto
 
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-orange-400"></span>
-            Medium Risk
-          </div>
+          rounded-t-2xl sm:rounded-xl
+          bg-white/95 dark:bg-gray-900/90
 
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-red-500"></span>
-            High Risk
+          p-4 shadow-2xl sm:shadow-xl
+          border dark:border-gray-700
+          backdrop-blur-sm
+
+          text-gray-800 dark:text-white
+          text-xs sm:text-sm
+        " >
+        <h2 className="text-base font-bold mb-3">🗺️ Risk Legend</h2>
+
+        <div className="mb-3">
+          <h3 className="font-semibold mb-2">Overall Risk</h3>
+
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-green-500"></span>
+              Low Risk
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-orange-400"></span>
+              Medium Risk
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-red-500"></span>
+              High Risk
+            </div>
           </div>
         </div>
-      </div>
 
-      <hr className="my-3 border-gray-300 dark:border-gray-700" />
+        <hr className="my-3 border-gray-300 dark:border-gray-700" />
 
-      <div className="mb-3">
-        <h3 className="font-semibold mb-2">
-          Hazards
-        </h3>
-
-        <div className="space-y-1">
-          <div>🔥 Fire</div>
-          <div>🌍 Earthquake</div>
-          <div>🌦 Weather</div>
-          <div>🌊 Flood</div>
-          <div>🌊 Tsunami</div>
+        <div className="mb-3">
+          <h3 className="font-semibold mb-2">Hazards</h3>
+          <div className="space-y-1">
+            <div>🔥 Fire</div>
+            <div>🌍 Earthquake</div>
+            <div>🌦 Weather</div>
+            <div>🌊 Flood</div>
+            <div>🌊 Tsunami</div>
+          </div>
         </div>
-      </div>
 
       <hr className="my-3 border-gray-300 dark:border-gray-700" />
 
