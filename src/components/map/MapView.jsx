@@ -162,6 +162,17 @@ return (
           Longitude: {longitude.toFixed(4)}
         </Popup>
       </Marker>
+
+      {safeRouteCoords.length > 1 && (
+  <Polyline
+    positions={safeRouteCoords}
+    pathOptions={{
+      color: "green",
+      weight: 6,
+      opacity: 0.9,
+    }}
+  />
+)}
     </MapContainer>
 
     <div
