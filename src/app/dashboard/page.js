@@ -1,7 +1,5 @@
 "use client";
 
-
-
 import { useEffect, useState,useRef } from "react";
 import { useRouter } from "next/navigation";
 
@@ -41,6 +39,7 @@ export default function Dashboard() {
   const router = useRouter();
   const [checking, setChecking] = useState(true);
   const [dbAlerts, setDbAlerts] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 const [mutedEvents, setMutedEvents] = useState(new Set());
  const [notificationsEnabled, setNotificationsEnabled] =
   useState(true);
@@ -390,15 +389,28 @@ useEffect(() => {
 return (
   <div className="flex min-h-screen bg-background text-foreground transition-colors">
 
-    <div className="hidden md:block sticky top-0 h-screen">
-      <Sidebar />
-    </div>
+<div
+  className={`
+    fixed md:sticky top-0 left-0 h-screen w-64 bg-card z-50
+    transform transition-transform duration-300
+    ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+    md:translate-x-0
+  `}
+>
+  <Sidebar setSidebarOpen={setSidebarOpen} />
+</div>
+  {sidebarOpen && (
+      <div
+        className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        onClick={() => setSidebarOpen(false)}
+      />
+    )}
 
     <div className="flex-1 w-full">
 
    
       <div className="sticky top-0 z-50 bg-card shadow border-b border-border">
-        <Navbar />
+       <Navbar setSidebarOpen={setSidebarOpen} />
       </div>
 
       <main className="p-4 sm:p-6 md:p-8">

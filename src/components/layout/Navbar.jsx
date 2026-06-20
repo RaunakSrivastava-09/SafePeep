@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import useLocation from "@/hooks/useLocation";
 import { getLocationName } from "@/lib/reverseGeocode";
 
-export default function Navbar() {
+export default function Navbar({ setSidebarOpen }) {
   const router = useRouter();
   const { latitude, longitude } = useLocation();
 
@@ -63,6 +63,12 @@ return (
     px-4 sm:px-6 py-3
     shadow-sm transition-colors
   ">
+      <button
+    className="md:hidden text-2xl mr-2"
+    onClick={() => setSidebarOpen(true)}
+  >
+    ☰
+  </button>
 
     <h2 className="text-base sm:text-lg font-semibold tracking-tight text-foreground">
       SafePeep • Local Risk Intelligence
