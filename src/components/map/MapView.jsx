@@ -293,7 +293,17 @@ return (
     </MapContainer>
 
    
-    <div className="absolute top-4 right-4 z-[1000] w-60 rounded-xl bg-white/95 dark:bg-gray-900/90 p-4 shadow-xl border dark:border-gray-700 backdrop-blur-sm text-gray-800 dark:text-white">
+    <div   className="
+    absolute z-[1000]
+    top-2 right-2 sm:top-4 sm:right-4
+    bottom-2 sm:bottom-auto
+    w-40 sm:w-60
+    max-h-[60vh] overflow-y-auto
+    rounded-xl bg-white/95 dark:bg-gray-900/90
+    p-3 sm:p-4 shadow-xl border dark:border-gray-700
+    backdrop-blur-sm text-gray-800 dark:text-white
+    text-xs sm:text-sm
+  ">
 
       <h2 className="text-base font-bold mb-3">
         🗺️ Risk Legend
