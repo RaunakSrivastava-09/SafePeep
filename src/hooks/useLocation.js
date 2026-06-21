@@ -16,11 +16,24 @@ export default function useLocation() {
     }
 
     navigator.geolocation.getCurrentPosition(
+      // (position) => {
+      //   setLatitude(position.coords.latitude);
+      //   setLongitude(position.coords.longitude);
+      //   setLoading(false);
+      // },
+
       (position) => {
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
-        setLoading(false);
-      },
+  const { latitude, longitude, accuracy } = position.coords;
+
+  if (accuracy && accuracy > 1500) {
+    console.log("Ignoring bad GPS fix:", accuracy);
+    return; // skip unstable reading
+  }
+
+  setLatitude(latitude);
+  setLongitude(longitude);
+  setLoading(false);
+},
       (err) => {
         console.error(err);
 
@@ -43,11 +56,18 @@ export default function useLocation() {
 
         setLoading(false);
       },
+      // {
+      //   enableHighAccuracy: true,
+      //   timeout: 10000,
+      //   maximumAge: 0,
+      // }
+
+
       {
-        enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 0,
-      }
+  enableHighAccuracy: true,
+  timeout: 20000,
+  maximumAge: 60000,
+}
     );
   }, []);
 
